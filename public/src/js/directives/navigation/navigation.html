@@ -1,0 +1,42 @@
+<div class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">RayIdea</a>
+		</div>
+		<div class="collapse navbar-collapse" id="main-navigation">			
+			<div ng-hide="isLogged">
+				<ul class="nav navbar-nav">
+					<li ng-class="{active: active === 'home'}">
+						<a href="#/home">Home</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li ng-class="{active: active === 'register'}">
+						<a href="#/register">Register</a>
+					</li>
+					<li ng-class="{active: active === 'login'}">
+						<a href="#/login">Login</a>
+					</li>
+				</ul>
+			</div>
+			<div ng-show="isLogged">
+				<ul class="nav navbar-nav">
+					<li ng-class="{active: active === 'home'}">
+						<a href="#/home">Logged</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href ng-click="logout()">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
