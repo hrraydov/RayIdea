@@ -5,6 +5,15 @@ angular.module('app').factory('AuthService', ['$window', function($window){
 				return true;
 			}
 			return false;
+		},
+		getUsername: function(){
+			return $window.sessionStorage.username;
+		},
+		setUsername: function(username){
+			$window.sessionStorage.username = username;
+		},
+		deleteUsername: function(){
+			delete $window.sessionStorage.username;
 		}
 	};
 }]);

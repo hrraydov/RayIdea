@@ -1,4 +1,4 @@
-angular.module('app').factory('TokenInterceptor', ['$q', '$location', 'TokenService', function($q, $location, TokenService){
+angular.module('app').factory('TokenInterceptor', ['$q', '$location', 'TokenService', 'AuthService', function($q, $location, TokenService, AuthService){
 	return {
 		request: function (config) {
             config.headers = config.headers || {};
@@ -19,6 +19,7 @@ angular.module('app').factory('TokenInterceptor', ['$q', '$location', 'TokenServ
         responseError: function(rejection) {
             if (rejection !== null && rejection.status === 401 && TokenService.getToken()) {
                 TokenService.deleteToken();
+                AuthService.deleteUsername();
                 $location.path("/login");
             }
  

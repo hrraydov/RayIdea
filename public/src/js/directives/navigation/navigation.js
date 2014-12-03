@@ -13,29 +13,34 @@ angular.module('app').directive('navigation', function(){
 						$scope.active = 'login';
 						break;
 					}
+					case '/profile/' + $scope.username: {
+						$scope.active = 'my-profile';
+						break;
+					}
 					default: {
 						$scope.active = '';
 					}
 				}
 			};
-			var checkLoggedIn = function(){
+			var checkIdentity = function(){
 				$scope.isLogged = AuthService.isAuthenticated();
+				$scope.username = AuthService.getUsername();
 			};
 
 			checkPath();
-			checkLoggedIn();
+			checkIdentity();
 
 			$scope.logout = function(){
 				UserService.logout().then(function(data){
 					TokenService.deleteToken();
 					$location.path('/');
-					checkLoggedIn();
+					checkIdentity();
 				});
 			};
 
 			$rootScope.$on('$routeChangeSuccess', function(){
 				checkPath();
-				checkLoggedIn();
+				checkIdentity();
 			});
 			
 		}],

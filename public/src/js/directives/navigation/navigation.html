@@ -1,5 +1,5 @@
 <div class="navbar navbar-default">
-	<div class="container-fluid">
+	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navigation">
 				<span class="sr-only">Toggle navigation</span>
@@ -27,8 +27,8 @@
 			</div>
 			<div ng-show="isLogged">
 				<ul class="nav navbar-nav">
-					<li ng-class="{active: active === 'home'}">
-						<a href="#/home">Logged</a>
+					<li ng-class="{active: active === 'my-profile'}">
+						<a href="#/profile/{{username}}">My profile</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

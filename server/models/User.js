@@ -5,7 +5,8 @@ var uuid = require('node-uuid');
 var userSchema = mongoose.Schema({
 	username: {
 		type: String,
-		required: true
+		required: true,
+    index: true
 	},
 	password: {
     type: String,
@@ -44,6 +45,20 @@ userSchema.methods.validPassword = function(password) {
 
 userSchema.methods.generateToken = function(){
   this.token = uuid.v1();
+};
+
+userSchema.methods.toProfile = function(){
+  return {
+    name: this.name,
+    gender: this.gender,
+    facebookProfile: this.facebookProfile,
+    twitterProfile: this.twitterProfile,
+    googleProfile: this.googleProfile,
+    githubProfile: this.githubProfile,
+    linkedInProfile: this.linkedInProfile,
+    about: this.about,
+    website: this.website
+  };
 };
 
 module.exports = mongoose.model('User', userSchema);

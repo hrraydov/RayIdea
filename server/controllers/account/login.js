@@ -23,7 +23,7 @@ module.exports = function(req, res){
         return res.status(400).send({errors: 'User not found'});
       }
       
-      return res.status(200).send({token: user.token});
+      return res.status(200).send({token: user.token, username: user.username});
     });
   };
 };

@@ -39,7 +39,7 @@ module.exports = function(req, res){
         if(err){
           return res.status(400).send(err);
         }
-        return res.status(201).send({token: user.token});
+        return res.status(201).send({token: user.token, username: user.username});
       });
     });
   };

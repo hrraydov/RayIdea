@@ -1,0 +1,29 @@
+<div class="row" ng-hide="profileNotFound">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Information
+            </div>
+            <div class="panel-body">
+                <p class="socials">
+                    <a class="facebook" ng-show="profile.facebookProfile" href="{{profile.facebookProfile}}"></a>
+                    <a class="google" ng-show="profile.googleProfile" href="{{profile.googleProfile}}"></a>                
+                    <a class="twitter" ng-show="profile.twitterProfile" href="{{profile.twitterProfile}}"></a>                
+                    <a class="linkedIn" ng-show="profile.linkedInProfile" href="{{profile.linkedInProfile}}"></a>                    
+                </p>
+                <p style="clear: left;">
+                    {{profile.name}}
+                </p>
+                <p>
+                    <a href="{{profile.website}}">{{profile.website}}</a>
+                </p>
+                <p class="well">
+                    {{profile.about}}
+                </p>
+            </div>
+        </div>
+    </div>    
+</div>
+<h1 ng-show="profileNotFound">
+    There is no such profile!!!
+</h1>
