@@ -3,48 +3,68 @@ var bcrypt = require('bcrypt-nodejs');
 var uuid = require('node-uuid');
 
 var userSchema = mongoose.Schema({
-	username: {
-		type: String,
-		required: true,
-    index: true
-	},
-	password: {
-    type: String,
-    required: true
+	account: {
+    username: {
+      type: String,
+      required: true,
+      index: true
+    },
+    password: {
+      type: String,
+      required: true
+    },
+    email: {
+      type: String,
+      required: true
+    },
+    token: {
+      type: String,
+      required: true,
+      index: true
+    }
+  },    
+  projects: {
+    ownerOf: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Project'
+    }],
+    memberOf: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Project'
+    }]
   },
-  email: {
-    type: String,
-    required: true
-  },
-  token: {
-    type: String,
-    required: true,
-    index: true
-  },
-  name: String,
-  gender: {
-    type: String,
-    enum: ['male', 'female']
-  },
-  facebookProfile: String,
-  twitterProfile: String,
-  googleProfile: String,
-  githubProfile: String,
-  linkedInProfile: String,
-  about: String,
-  website: String
+  profile: {
+    name: {
+      bulgarian: String,
+      english: String
+    },
+    about: {
+      bulgarian: String,
+      english: String
+    },
+    gender: {
+      type: String,
+      enum: ['male', 'female']
+    },
+    facebookProfile: String,
+    twitterProfile: String,
+    googleProfile: String,
+    githubProfile: String,
+    linkedInProfile: String,
+    website: String
+  }  
 });
 
 userSchema.methods.hashPassword = function(){
-  this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
+  this.account.password = bcrypt.hashSync(this.account.password, bcrypt.genSaltSync(8));
 };
 
 userSchema.methods.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.account.password);
 };
 
 userSchema.methods.generateToken = function(){
-  this.token = uuid.v1();
+  this.account.token = uuid.v1();
 };
 
 userSchema.methods.toProfile = function(){
@@ -57,7 +77,8 @@ userSchema.methods.toProfile = function(){
     githubProfile: this.githubProfile,
     linkedInProfile: this.linkedInProfile,
     about: this.about,
-    website: this.website
+    website: this.website,
+    ownerOf: this.ownerOf
   };
 };
 

@@ -12,6 +12,14 @@ angular.module('app').controller('ProfileShowCtrl', ['$scope', '$routeParams', '
 	};
 
 	$scope.profileNotFound = false;
+	$scope.activeTab = 'information';
+	$scope.currentProfile = $routeParams.username === AuthService.getUsername();
+
+	console.log($routeParams.username === AuthService.getUsername());
+
+	$scope.openTab = function(tab){
+		$scope.activeTab = tab;
+	};
 
 	loadProfile();
 }]);

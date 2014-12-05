@@ -1,7 +1,7 @@
 var User = require('./../../models/User.js');
 
 module.exports = function(req, res){
-  User.findOne({username: req.params.username}, function(err, user){
+  User.findOne({username: req.params.username}).populate('ownerOf').exec(function(err, user){
     if(err){
       return res.status(500).send(err);
     }

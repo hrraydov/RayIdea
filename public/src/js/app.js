@@ -14,13 +14,13 @@ app.config(['$routeProvider', '$httpProvider', '$provide', function($routeProvid
 		controller: 'AccountLoginCtrl',
 		templateUrl: '/views/account/login.html'
 	})
-	.when('/profile/:username', {
-		controller: 'ProfileShowCtrl',
-		templateUrl: '/views/profile/show.html'
-	})
 	.when('/profile/edit', {
 		controller: 'ProfileEditCtrl',
 		templateUrl: '/views/profile/edit.html'
+	})
+	.when('/profile/:username', {
+		controller: 'ProfileShowCtrl',
+		templateUrl: '/views/profile/show.html'
 	})
 	.otherwise({
 		redirectTo: '/'

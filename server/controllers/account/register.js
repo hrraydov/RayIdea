@@ -17,8 +17,8 @@ module.exports = function(req, res){
 
     User
     .findOne({})
-    .where({email: email})
-    .where({username: username})
+    .where({account.email: email})
+    .where({account.username: username})
     .exec(function(err, user){
       if(err){
         return res.status(500).send(err);
@@ -27,9 +27,11 @@ module.exports = function(req, res){
         return res.status(400).send({errors: 'Username or email exists'});
       }
       var user = new User({
-        username: username,
-        email: email,
-        password: password
+        account:{
+          username: username,
+          email: email,
+          password: password
+        }        
       });
 
       user.hashPassword();
@@ -39,7 +41,7 @@ module.exports = function(req, res){
         if(err){
           return res.status(400).send(err);
         }
-        return res.status(201).send({token: user.token, username: user.username});
+        return res.status(201).send({token: user.account.token, username: user.account.username});
       });
     });
   };

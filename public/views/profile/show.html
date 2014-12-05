@@ -1,29 +1,71 @@
 <div class="row" ng-hide="profileNotFound">
-    <div class="col-md-4">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Information
-            </div>
-            <div class="panel-body">
-                <p class="socials">
-                    <a class="facebook" ng-show="profile.facebookProfile" href="{{profile.facebookProfile}}"></a>
-                    <a class="google" ng-show="profile.googleProfile" href="{{profile.googleProfile}}"></a>                
-                    <a class="twitter" ng-show="profile.twitterProfile" href="{{profile.twitterProfile}}"></a>                
-                    <a class="linkedIn" ng-show="profile.linkedInProfile" href="{{profile.linkedInProfile}}"></a>                    
-                </p>
-                <p style="clear: left;">
-                    {{profile.name}}
-                </p>
-                <p>
-                    <a href="{{profile.website}}">{{profile.website}}</a>
-                </p>
-                <p class="well">
-                    {{profile.about}}
-                </p>
-            </div>
-        </div>
-    </div>    
+	<div class="col-md-offset-1 col-md-10">
+		<a ng-show="currentProfile === true" class="btn btn-primary" href="#/profile/edit">Edit profile</a>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-md-3">
+						<img class="img-circle" src="/dist/images/socials.png" width="140" height="140" />
+					</div>	
+					<div class="col-md-9">
+						<h3>{{profile.name}}</h3>
+						<div class="well">
+							{{profile.about}}
+						</div>
+					</div>				
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-3">
+						<ul class="nav nav-pills nav-stacked">
+							<li ng-class="{active: activeTab === 'information'}">
+								<a href="javascript:;" ng-click="openTab('information')">Information</a>
+							</li>
+							<li ng-class="{active: activeTab === 'profile'}">
+								<a href="javascript:;" ng-click="openTab('profile')">Profile</a>
+							</li>
+							<li ng-class="{active: activeTab === 'messages'}">
+								<a href="javascript:;" ng-click="openTab('messages')">Messages</a>
+							</li>
+							<li ng-class="{active: activeTab === 'settings'}">
+								<a href="javascript:;" ng-click="openTab('settings')">Settings</a>
+							</li>
+						</ul>
+					</div>					  
+					<div class="col-md-7">
+						<div ng-show="activeTab === 'information'">
+							<p class="socials">
+								<a class="facebook" ng-show="profile.facebookProfile" href="{{profile.facebookProfile}}"></a>
+								<a class="google" ng-show="profile.googleProfile" href="{{profile.googleProfile}}"></a>                
+								<a class="twitter" ng-show="profile.twitterProfile" href="{{profile.twitterProfile}}"></a>                
+								<a class="linkedIn" ng-show="profile.linkedInProfile" href="{{profile.linkedInProfile}}"></a>                    
+							</p>
+							<p style="clear: left;">
+								{{profile.name}}
+							</p>
+							<p>
+								<a href="{{profile.website}}">{{profile.website}}</a>
+							</p>
+							<p class="well">
+								{{profile.about}}
+							</p>
+						</div>
+						<div ng-show="activeTab === 'profile'">
+							Profile
+						</div>
+						<div ng-show="activeTab === 'messages'">
+							Messages
+						</div>
+						<div ng-show="activeTab === 'settings'">
+							Settings
+						</div>
+					</div>
+				</div>		
+			</div>
+		</div>					
+	</div>    
 </div>
 <h1 ng-show="profileNotFound">
-    There is no such profile!!!
+	There is no such profile!!!
 </h1>

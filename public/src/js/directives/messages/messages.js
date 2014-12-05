@@ -6,6 +6,6 @@ angular.module('app').directive('messages', function(){
 			successMessages: '=successMessages',
 			infoMessages: '=infoMessages'
 		},
-		templateUrl: 'src/js/directives/message/message.html'
+		templateUrl: 'src/js/directives/messages/messages.html'
 	};
 });

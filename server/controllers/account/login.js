@@ -14,7 +14,7 @@ module.exports = function(req, res){
 
     User
     .findOne({})
-    .or([{username: username},{email: username}])
+    .or([{account.username: username}, {account.email: username}])
     .exec(function(err, user){
       if(err){
         return res.status(500).send(err);
@@ -23,7 +23,7 @@ module.exports = function(req, res){
         return res.status(400).send({errors: 'User not found'});
       }
       
-      return res.status(200).send({token: user.token, username: user.username});
+      return res.status(200).send({token: user.account.token, username: user.account.username});
     });
   };
 };
