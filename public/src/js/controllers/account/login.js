@@ -1,8 +1,8 @@
-angular.module('app').controller('AccountLoginCtrl', ['$scope', '$location', 'UserService', 'TokenService', 'AuthService', function($scope, $location, UserService, TokenService, AuthService){
+angular.module('app').controller('AccountLoginCtrl', ['$scope', '$location', 'AccountService', 'TokenService', 'AuthService', function($scope, $location, AccountService, TokenService, AuthService){
 	$scope.errors = [];
 	$scope.login = function(){
 
-		UserService.login($scope.user)
+		AccountService.login($scope.user)
 		.then(function(data){
 			TokenService.setToken(data.token);
 			AuthService.setUsername(data.username);

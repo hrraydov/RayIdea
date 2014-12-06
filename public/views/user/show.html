@@ -1,0 +1,114 @@
+<div class="row" ng-hide="profileNotFound">
+	<div class="col-md-offset-1 col-md-10">
+		<a ng-show="currentProfile === true" class="btn btn-primary" href="#/profile">Edit profile</a>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-md-3">
+						<img class="img-circle" src="/dist/images/socials.png" width="140" height="140" />
+					</div>	
+					<div class="col-md-9">
+						<h3>{{username}}</h3>
+						<div ng-show="profile.about" class="well">
+							{{profile.about.english}}
+						</div>
+					</div>				
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-3">
+						<ul class="nav nav-pills nav-stacked">
+							<li ng-class="{active: activeTab === 'information'}">
+								<a href="javascript:;" ng-click="openTab('information')">Information</a>
+							</li>
+							<li ng-class="{active: activeTab === 'skills'}">
+								<a href="javascript:;" ng-click="openTab('skills')">Skills</a>
+							</li>
+							<li ng-class="{active: activeTab === 'messages'}">
+								<a href="javascript:;" ng-click="openTab('messages')">Messages</a>
+							</li>
+							<li ng-class="{active: activeTab === 'settings'}">
+								<a href="javascript:;" ng-click="openTab('settings')">Settings</a>
+							</li>
+						</ul>
+					</div>					  
+					<div class="col-md-9">
+						<div ng-show="activeTab === 'information'">
+							<div class="row">
+								<div class="col-md-6">
+									<div>
+										<fieldset>
+											<legend>Personal information</legend>
+											<div>
+												Name: {{profile.name.first.english}} {{profile.name.second.english}} {{profile.name.last.english}}
+											</div>
+											<div>
+												Gender: {{profile.gender}}
+											</div>
+										</fieldset>								
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div>
+										<fieldset>
+											<legend>Social information</legend>
+											<div>
+												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.facebookProfile}}">Facebook</a>
+											</div>
+											<div>
+												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.googleProfile}}">Google+</a>
+											</div>
+											<div>
+												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.twitterProfile}}">Twitter</a>
+											</div>
+											<div>
+												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.linkedInProfile}}">LinkedIn</a>
+											</div>
+											<div>
+												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.githubProfile}}">Github</a>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+							</div>							
+						</div>
+						<div ng-show="activeTab === 'skills'">
+							<div class="row">
+									<ul class="list-unstyled">
+										<li ng-repeat="skill in skills">
+
+											<div class="col-md-6">
+												<label>{{skill.name}}</label>
+												<div class="progress">
+													<div ng-class="
+													{
+													 'progress-bar-success': $index % 5 === 0,
+													 'progress-bar-warning': $index % 5 === 1,
+													 'progress-bar-info': $index % 5 === 2,
+													 'progress-bar-primary': $index % 5 === 3,
+													 'progress-bar-danger': $index % 5 === 4
+													}" class="progress-bar" role="progressbar" aria-valuenow="{{skill.value}}" aria-valuemin="0" aria-valuemax="10" style="width: {{skill.value*10}}%">
+												    	<span class="sr-only"></span>
+													</div>
+												</div>
+											</li>
+										</div>
+									</ul>
+							</div>							
+						</div>
+						<div ng-show="activeTab === 'messages'">
+							Messages
+						</div>
+						<div ng-show="activeTab === 'settings'">
+							Settings
+						</div>
+					</div>
+				</div>		
+			</div>
+		</div>					
+	</div>    
+</div>
+<h1 ng-show="profileNotFound">
+	There is no such profile!!!
+</h1>

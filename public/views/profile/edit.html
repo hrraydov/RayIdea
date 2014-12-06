@@ -1,31 +1,99 @@
 <div class="row">
-	<div class="col-md-5">
-		<messages error-messages="errorMessages"></messages>
-		<form class="form-horizontal" ng-submit="edit()" novalidate>
+	<div class="col-md-12">
+		<messages error-messages="errorMessages" success-messages="successMessages" info-messages="infoMessages"></messages>
+		<h3>Personal information</h3>
+		<hr />
+		<form class="form-horizontal" ng-submit="edit()" novalidate>							
+			<fieldset>	
+				<div class="row">
+					<div class="col-md-4">					
+						<div class="form-group">
+							<label>First name in Bulgarian: </label>
+							<input type="text" class="form-control" ng-model="user.name.first.bulgarian" placeholder="" />
+						</div>												
+						<div class="form-group">
+							<label>First name in English: </label>
+							<input type="text" class="form-control" ng-model="user.name.first.english" placeholder="" />
+						</div>
+						<div class="form-group">
+							<label>Gender: </label>
+							<select class="form-control" ng-model="user.gender">
+								<option></option>
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label>About in Bulgarian:</label>
+							<textarea class="form-control" ng-model="user.about.bulgarian"></textarea>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Second name in Bulgarian: </label>
+							<input type="text" class="form-control" ng-model="user.name.second.bulgarian" placeholder="" />
+						</div>																
+						<div class="form-group">
+							<label>Second name in English: </label>
+							<input type="text" class="form-control" ng-model="user.name.second.english" placeholder="" />
+						</div>						
+						<div class="form-group">
+							<label>Birth date: </label>
+							<input type="text" class="form-control" ng-model="user.name.birthdate" placeholder="" />
+						</div>
+						<div class="form-group">
+							<label>About in English:</label>
+							<textarea class="form-control" ng-model="user.about.english"></textarea>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Last name in Bulgarian: </label>
+							<input type="text" class="form-control" ng-model="user.name.last.bulgarian" placeholder="" />
+						</div>														
+						<div class="form-group">
+							<label>Last name in English: </label>
+							<input type="text" class="form-control" ng-model="user.name.last.english" placeholder="" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+			<h3>Social information</h3>
+			<hr />
+			<fieldset>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Facebook profile</label>
+							<input type="text" class="form-control" ng-model="user.facebookProfile" placeholder="https://facebook.com/example-profile" />
+						</div>
+						<div class="form-group">
+							<label>Github profile</label>
+							<input type="text" class="form-control" ng-model="user.githubProfile" placeholder="https://github.com/example-profile" />
+						</div>
+					</div>
+					<div class="col-md-4">					
+						<div class="form-group">
+							<label>Twitter profile</label>
+							<input type="text" class="form-control" ng-model="user.twitterProfile" placeholder="https://twitter.com/example-profile" />
+						</div>					
+						<div class="form-group">
+							<label>Google+ profile</label>
+							<input type="text" class="form-control" ng-model="user.googleProfile" placeholder="https://plus.google.com/example-profile" />
+						</div>
+					</div>
+					<div class="col-md-4">					
+						<div class="form-group">
+							<label>LinkedIn profile</label>
+							<input type="text" class="form-control" ng-model="user.linkedInProfile" placeholder="https://linkedin.com/example-profile" />
+						</div>
+					</div>
+				</div>	
+			</fieldset>		
 			<div class="form-group">
-				<input type="text" class="form-control" ng-model="user.name" placeholder="" />
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" ng-model="user.facebookProfile" placeholder="https://facebook.com/example-profile" />
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" ng-model="user.twitterProfile" placeholder="https://twitter.com/example-profile" />
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" ng-model="user.linkedInProfile" placeholder="https://linkedin.com/example-profile" />
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" ng-model="user.githubProfile" placeholder="https://github.com/example-profile" />
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" ng-model="user.googleProfile" placeholder="https://plus.google.com/example-profile" />
-			</div>			
-			<div class="form-group">
-				<textarea type="text" class="form-control" ng-model="user.about" placeholder="https://plus.google.com/example-profile"></textarea>
-			</div>
-			<div class="form-group">
-				<input type="submit" class="btn btn-default" value="Save" />
-			</div>
+				<input type="submit" class="btn btn-primary" value="Save" />
+			</div>		
 		</form>
+			
 	</div>
 </div>

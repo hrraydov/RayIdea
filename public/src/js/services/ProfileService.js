@@ -1,9 +1,9 @@
 angular.module('app').factory('ProfileService', ['$q', '$http', function($q, $http){
 	return {
-		edit: function(details){
+		edit: function(data){
 			var deferred = $q.defer();
 
-			$http.put('/api/profile', details)
+			$http.put('/api/profile', data)
 			.success(function(data){
 				deferred.resolve(data);
 			})
@@ -13,10 +13,10 @@ angular.module('app').factory('ProfileService', ['$q', '$http', function($q, $ht
 
 			return deferred.promise;
 		},
-		getCurrent: function(){
+		get: function(){
 			var deferred = $q.defer();
 
-			$http.get('/api/profile/current')
+			$http.get('/api/profile')
 			.success(function(data){
 				deferred.resolve(data);
 			})
@@ -26,18 +26,5 @@ angular.module('app').factory('ProfileService', ['$q', '$http', function($q, $ht
 
 			return deferred.promise;
 		},
-		getByUsername: function(username){
-			var deferred = $q.defer();
-
-			$http.get('/api/profile/' + username)
-			.success(function(data){
-				deferred.resolve(data);
-			})
-			.error(function(data, status){
-				deferred.reject({data: data, statusCode: status});
-			});
-
-			return deferred.promise;
-		}
 	};
 }]);
