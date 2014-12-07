@@ -1,3 +1,4 @@
+{{profile}}
 <div class="row" ng-hide="profileNotFound">
 	<div class="col-md-offset-1 col-md-10">
 		<a ng-show="currentProfile === true" class="btn btn-primary" href="#/profile">Edit profile</a>
@@ -40,12 +41,20 @@
 									<div>
 										<fieldset>
 											<legend>Personal information</legend>
-											<div>
-												Name: {{profile.name.first.english}} {{profile.name.second.english}} {{profile.name.last.english}}
-											</div>
-											<div>
-												Gender: {{profile.gender}}
-											</div>
+											<dl class="">
+												<dt>Name</dt>
+												<dd>
+													{{profile.name.first.english}} {{profile.name.second.english}} {{profile.name.last.english}}
+												</dd>
+
+												<dt>Gender</dt>
+												<dd>
+													{{profile.gender}}
+												</dd>
+
+												<dt>Birth date</dt>
+												<dd>{{profile.birthdate}}</dd>
+											</dl>
 										</fieldset>								
 									</div>
 								</div>
@@ -54,19 +63,19 @@
 										<fieldset>
 											<legend>Social information</legend>
 											<div>
-												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.facebookProfile}}">Facebook</a>
+												<a ng-class="{'disabled': !profile.facebookProfile}" class="btn btn-primary btn-sm btn-social-simple" href="{{profile.facebookProfile}}">Facebook</a>
 											</div>
 											<div>
-												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.googleProfile}}">Google+</a>
+												<a ng-class="{'disabled': !profile.googleProfile}" class="btn btn-primary btn-sm btn-social-simple" href="{{profile.googleProfile}}">Google+</a>
 											</div>
 											<div>
-												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.twitterProfile}}">Twitter</a>
+												<a ng-class="{'disabled': !profile.twitterProfile}" class="btn btn-primary btn-sm btn-social-simple" href="{{profile.twitterProfile}}">Twitter</a>
 											</div>
 											<div>
-												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.linkedInProfile}}">LinkedIn</a>
+												<a ng-class="{'disabled': !profile.linedInProfile}" class="btn btn-primary btn-sm btn-social-simple" href="{{profile.linkedInProfile}}">LinkedIn</a>
 											</div>
 											<div>
-												<a class="btn btn-primary btn-sm btn-social-simple" href="{{profile.githubProfile}}">Github</a>
+												<a ng-class="{'disabled': !profile.githubProfile}" class="btn btn-primary btn-sm btn-social-simple" href="{{profile.githubProfile}}">Github</a>
 											</div>
 										</fieldset>
 									</div>

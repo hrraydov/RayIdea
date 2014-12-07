@@ -3,9 +3,11 @@ angular.module('app').controller('UserShowCtrl', ['$scope', '$routeParams', '$lo
 		UserService
 		.getByUsername($routeParams.username)
 		.then(function(data){
+			console.log(data);
 			$scope.profile = data.profile;
 			$scope.username = data.username;
 			$scope.skills = data.skills;
+			$scope.profile.name.full = data.profile.name.full;
 		}, function(data){
 			if(data.statusCode == 404){
 				$scope.profileNotFound = true;

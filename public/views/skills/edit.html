@@ -3,21 +3,23 @@
 		<messages error-messages="errorMessages" success-messages="successMessages" info-messages="infoMessages"></messages>
 		<form novalidate ng-submit="save()">
 			<div class="row">
-				<div ng-repeat="skill in skills" class="col-md-3">
-					<div class="skill panel panel-default">
-						<div class="panel-body">
-							<div class="form-group">									
-								<input type="text" class="form-control" ng-model="skill.name" />
-								<div style="margin-top: 20px;" class="text-center">
-									{{skill.value}} / 10
-								</div>
-								<div style="margin-top: 20px;" ui-slider min="0" max="10" ng-model="skill.value"></div>
-							</div>	
+				<div ui-sortable ng-model="skills">
+					<div ng-repeat="skill in skills" class="col-md-3">
+						<div class="skill panel panel-primary">
+							<div class="panel-body">
+								<div class="form-group">									
+									<input type="text" class="form-control" ng-model="skill.name" />
+									<div style="margin-top: 20px;" class="text-center">
+										{{skill.value}} / 10
+									</div>
+									<div style="margin-top: 20px;" ui-slider min="0" max="10" ng-model="skill.value"></div>
+								</div>	
+							</div>
 						</div>
 					</div>
-				</div>
+				</div>			
 				<div class="col-md-3">
-					<div class="skill panel panel-default">
+					<div class="skill panel panel-primary">
 						<div style="margin-top: 50px;" class="panel-body text-center">
 							<a class="btn btn-primary" ng-click="addSkill()" href="javascript:;">
 								<div>

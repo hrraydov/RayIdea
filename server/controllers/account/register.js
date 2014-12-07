@@ -16,9 +16,12 @@ module.exports = function(req, res){
     var password = req.body.password;
 
     User
-    .findOne({})
-    .where({account.email: email})
-    .where({account.username: username})
+    .findOne({
+      $or: [
+        {'account.username': username},
+        {'account.email': email}
+      ]
+    })
     .exec(function(err, user){
       if(err){
         return res.status(500).send(err);

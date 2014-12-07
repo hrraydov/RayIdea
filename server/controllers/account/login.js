@@ -12,14 +12,16 @@ module.exports = function(req, res){
     var password = req.body.password;
     console.log(username);
 
-    User
-    .findOne({})
-    .or([{account.username: username}, {account.email: username}])
-    .exec(function(err, user){
+    User.findOne({
+      $or: [
+        {'account.username': username},
+        {'account.email': username}
+      ]
+    },function(err, user){
       if(err){
         return res.status(500).send(err);
       }
-      if(!user){
+      if(!user || !user.validPassword(password)){
         return res.status(400).send({errors: 'User not found'});
       }
       

@@ -9,15 +9,7 @@ module.exports = function(req, res){
     return res.status(400).send({errors: validationErrors});
   }
 
-  req.user.gender = req.body.gender;
-  req.user.name = req.body.name;
-  req.user.facebookProfile = req.body.facebookProfile;
-  req.user.twitterProfile = req.body.twitterProfile;
-  req.user.googleProfile = req.body.googleProfile;
-  req.user.githubProfile = req.body.githubProfile;
-  req.user.linkedInProfile = req.body.linkedInProfile;
-  req.user.website = req.body.website;
-  req.user.about = req.body.about;
+  req.user.profile = req.body;
 
   req.user.save(function(err, user){
     if(err){

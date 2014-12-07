@@ -33,10 +33,25 @@ var userSchema = mongoose.Schema({
       ref: 'Project'
     }]
   },
+  skills: [{
+    _id: false,
+    name: String,
+    value: Number
+  }],
   profile: {
     name: {
-      bulgarian: String,
-      english: String
+      first: {
+        bulgarian: String,
+        english: String
+      },
+      second: {
+        bulgarian: String,
+        english: String
+      },
+      last: {
+        bulgarian: String,
+        english: String
+      }
     },
     about: {
       bulgarian: String,
@@ -51,8 +66,13 @@ var userSchema = mongoose.Schema({
     googleProfile: String,
     githubProfile: String,
     linkedInProfile: String,
-    website: String
+    website: String,
+    birthdate: String
   }  
+},
+{
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true }
 });
 
 userSchema.methods.hashPassword = function(){
@@ -60,6 +80,7 @@ userSchema.methods.hashPassword = function(){
 };
 
 userSchema.methods.validPassword = function(password) {
+  console.log('Compare passowrds: ' + bcrypt.compareSync(password, this.account.password));
   return bcrypt.compareSync(password, this.account.password);
 };
 
@@ -67,19 +88,32 @@ userSchema.methods.generateToken = function(){
   this.account.token = uuid.v1();
 };
 
-userSchema.methods.toProfile = function(){
+userSchema.virtual('profile.name.full').get(function(){
+  var bulgarian = '';
+  if(this.profile.name.first.bulgarian){
+    bulgarian += ' ' + this.profile.name.first.bulgarian;
+  }
+  if(this.profile.name.second.bulgarian){
+    bulgarian += ' ' + this.profile.name.second.bulgarian;
+  }
+  if(this.profile.name.last.bulgarian){
+    bulgarian += ' ' + this.profile.name.third.bulgarian;
+  }
+
+  var english = '';
+  if(this.profile.name.first.english){
+    english += ' ' + this.profile.name.first.english;
+  }
+  if(this.profile.name.second.english){
+    english += ' ' + this.profile.name.second.english;
+  }
+  if(this.profile.name.last.english){
+    english += ' ' + this.profile.name.last.english;
+  }
   return {
-    name: this.name,
-    gender: this.gender,
-    facebookProfile: this.facebookProfile,
-    twitterProfile: this.twitterProfile,
-    googleProfile: this.googleProfile,
-    githubProfile: this.githubProfile,
-    linkedInProfile: this.linkedInProfile,
-    about: this.about,
-    website: this.website,
-    ownerOf: this.ownerOf
-  };
-};
+    english: english,
+    bulgarian: bulgarian
+  }
+});
 
 module.exports = mongoose.model('User', userSchema);

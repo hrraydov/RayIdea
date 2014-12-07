@@ -1,7 +1,7 @@
 angular.module('app').directive('navigation', function(){
 	return {
 		restrict: 'E',
-		controller: ['$scope', '$rootScope', '$location', 'AuthService', 'UserService', 'TokenService', function($scope, $rootScope, $location, AuthService, UserService, TokenService){
+		controller: ['$scope', '$rootScope', '$location', '$translate', 'AuthService', 'AccountService', 'TokenService', function($scope, $rootScope, $location, $translate, AuthService, AccountService, TokenService){
 			
 			var checkPath = function(){
 				switch($location.path()){
@@ -31,11 +31,16 @@ angular.module('app').directive('navigation', function(){
 			checkIdentity();
 
 			$scope.logout = function(){
-				UserService.logout().then(function(data){
+				console.log('Logout');
+				AccountService.logout().then(function(data){
 					TokenService.deleteToken();
 					$location.path('/');
 					checkIdentity();
 				});
+			};
+
+			$scope.changeLanguage = function(lang){
+				$translate.use(lang);
 			};
 
 			$rootScope.$on('$routeChangeSuccess', function(){
