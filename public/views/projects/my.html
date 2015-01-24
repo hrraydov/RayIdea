@@ -1,0 +1,45 @@
+<div class="row">
+	<div class="col-md-4">
+		<h2>Owner of</h3>
+		<a href="#/projects/create">Create project</a>
+		<ul class="list-unstyled">
+			<li ng-repeat="project in owner.projects">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h4><a href="#/projects/{{project._id}}">{{project.title}}</a></h4>
+						<p>{{project.description}}</p>
+						<button class="btn btn-danger" ng-click="owner.delete(project)">Delete</button>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-4">
+		<h2>Member of</h3>
+		<ul class="list-unstyled">
+			<li ng-repeat="project in member.projects">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h4>{{project.title}}</h4>
+						<p>{{project.description}}</p>
+						<button class="btn btn-danger" ng-click="member.leave(project)">Leave</button>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-4">
+		<h2>Candidate for member of</h3>
+		<ul class="list-unstyled">
+			<li ng-repeat="project in candidate.projects">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h4>{{project.title}}</h4>
+						<p>{{project.description}}</p>
+						<button class="btn btn-danger" ng-click="candidate.cancel(project)">Cancel</button>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

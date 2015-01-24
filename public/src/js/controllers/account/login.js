@@ -6,6 +6,7 @@ angular.module('app').controller('AccountLoginCtrl', ['$scope', '$location', 'Ac
 		.then(function(data){
 			TokenService.setToken(data.token);
 			AuthService.setUsername(data.username);
+			AuthService.setId(data._id);
 			$location.path('/');
 		},function(data){
 			$scope.errors = data;

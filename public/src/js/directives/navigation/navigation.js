@@ -17,6 +17,10 @@ angular.module('app').directive('navigation', function(){
 						$scope.active = 'my-profile';
 						break;
 					}
+					case '/projects': {
+						$scope.active = 'projects';
+						break;
+					}
 					default: {
 						$scope.active = '';
 					}

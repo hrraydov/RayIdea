@@ -14,6 +14,15 @@ angular.module('app').factory('AuthService', ['$window', function($window){
 		},
 		deleteUsername: function(){
 			delete $window.sessionStorage.username;
+		},
+		getId: function(){
+			return $window.sessionStorage.id;			
+		},
+		setId: function(id){
+			$window.sessionStorage.id = id;
+		},
+		deleteId: function(){
+			delete $window.sessionStorage.id;
 		}
 	};
 }]);

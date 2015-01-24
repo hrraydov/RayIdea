@@ -8,6 +8,7 @@ angular.module('app').controller('UserShowCtrl', ['$scope', '$routeParams', '$lo
 			$scope.username = data.username;
 			$scope.skills = data.skills;
 			$scope.profile.name.full = data.profile.name.full;
+			$scope.projects = data.projects;
 		}, function(data){
 			if(data.statusCode == 404){
 				$scope.profileNotFound = true;

@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-md-6">
+		<div class="well">
+			<div ng-repeat="message in messages">
+				{{message.sender}}: {{message.content}}
+			</div>
+		</div>
+		<form class="form-inline">
+			<div class="form-group">
+				<input type="text" ng-model="message.content" class="form-control" />
+				<button type="submit" class="btn btn-default">Send</button>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-6">
+		<ul>
+			<li ng-repeat="user in users">
+				<a href="javascript:;" ng-click="openChat('{{user}}')">{{user}}</a>
+			</li>
+		</ul>
+	</div>
+</div>

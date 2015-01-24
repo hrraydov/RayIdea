@@ -18,7 +18,7 @@ module.exports = function(req, res){
     if(err){
       return res.status(500).send(err);
     }
-    req.user.ownerOf.push(project._id);
+    req.user.projects.ownerOf.push(project._id);
     req.user.save(function(err, user){
       if(err){
         return res.status(500).send(err);

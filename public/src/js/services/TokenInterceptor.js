@@ -17,12 +17,12 @@ angular.module('app').factory('TokenInterceptor', ['$q', '$location', 'TokenServ
         },
  
         responseError: function(rejection) {
-            if (rejection !== null && rejection.status === 401 && TokenService.getToken()) {
+            if (rejection !== null && rejection.status === 401) {
                 TokenService.deleteToken();
                 AuthService.deleteUsername();
+                AuthService.deleteId();
                 $location.path("/login");
-            }
- 
+            } 
             return $q.reject(rejection);
         }
 	};

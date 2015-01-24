@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<title>RayIdea</title>
+	</head>
+	<body>
+
+		<input type="text" id="current-user" placeholder="Current user" />
+		<input type="text" id="other-user" placeholder="Other user" />
+		<button id="load">Load</button>
+		<ul id="messages">
+		</ul>
+		<input type="text" id="message" />
+		<button id="send">Send</button>
+
+		<script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>	
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script>
+		var socket = io.connect('/chat');
+
+		$("#load").on('click', function(){
+
+			socket = io.connect('/chat');
+
+			socket.emit('connectRequest', $("#current-user").val());
+
+			socket.emit('loadChat', {username1: $("#current-user").val(), username2: $("#other-user").val()});
+
+			$("#messages").html("");
+
+		});
+
+		
+
+		socket.on('receiveMessages', function(messages){
+			console.log(messages);
+			for(var i=0; i<messages.length; i++){
+				var message = messages[i];
+				$("#messages").append("<li>" + message.sender + ": " + message.content + "</li>");
+			}
+		});
+
+		socket.on('receiveMessage', function(message){
+			console.log(socket);
+			$("#messages").append("<li>" + message.sender + ": " + message.content + "</li>");
+		});
+
+		$("#send").on('click', function(){
+			console.log({
+				sender: $("#current-user").val(),
+				receiver: $('#other-user').val(),
+				content: $("#message").val()
+			});
+			socket.emit('sendMessage',{
+				sender: $("#current-user").val(),
+				receiver: $('#other-user').val(),
+				content: $("#message").val()
+			});
+		});
+
+		</script>
+	</body>
+</html>

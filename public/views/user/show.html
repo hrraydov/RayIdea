@@ -1,7 +1,5 @@
-{{profile}}
 <div class="row" ng-hide="profileNotFound">
 	<div class="col-md-offset-1 col-md-10">
-		<a ng-show="currentProfile === true" class="btn btn-primary" href="#/profile">Edit profile</a>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<div class="row">
@@ -26,8 +24,8 @@
 							<li ng-class="{active: activeTab === 'skills'}">
 								<a href="javascript:;" ng-click="openTab('skills')">Skills</a>
 							</li>
-							<li ng-class="{active: activeTab === 'messages'}">
-								<a href="javascript:;" ng-click="openTab('messages')">Messages</a>
+							<li ng-class="{active: activeTab === 'projects'}">
+								<a href="javascript:;" ng-click="openTab('projects')">Projects</a>
 							</li>
 							<li ng-class="{active: activeTab === 'settings'}">
 								<a href="javascript:;" ng-click="openTab('settings')">Settings</a>
@@ -86,7 +84,6 @@
 							<div class="row">
 									<ul class="list-unstyled">
 										<li ng-repeat="skill in skills">
-
 											<div class="col-md-6">
 												<label>{{skill.name}}</label>
 												<div class="progress">
@@ -101,13 +98,36 @@
 												    	<span class="sr-only"></span>
 													</div>
 												</div>
-											</li>
-										</div>
+											</div>
+										</li>
 									</ul>
 							</div>							
 						</div>
-						<div ng-show="activeTab === 'messages'">
-							Messages
+						<div ng-show="activeTab === 'projects'">
+							<div class="row">
+								<div class="col-md-6">
+									<h3>Owner of</h3>
+									<hr />
+									<ul class="list-unstyled">
+										<li ng-repeat="project in projects.ownerOf">
+											<div class="well well-sm">
+												<h4><a href="#/projects/{{project._id}}">{{project.title}}</a></h4>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="col-md-6">
+									<h3>Member of</h3>
+									<hr />
+									<ul class="list-unstyled">
+										<li ng-repeat="project in projects.memberOf">
+											<div class="well well-sm">
+												<h4><a href="#/projects/{{project._id}}">{{project.title}}</a></h4>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
 						</div>
 						<div ng-show="activeTab === 'settings'">
 							Settings

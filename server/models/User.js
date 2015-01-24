@@ -31,6 +31,10 @@ var userSchema = mongoose.Schema({
     memberOf: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Project'
+    }],
+    candidateFor: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Project'
     }]
   },
   skills: [{

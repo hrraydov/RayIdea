@@ -29,7 +29,7 @@ var projectSchema = mongoose.Schema({
     enum: ['public', 'private'],
     required: true
   },
-  memberCandidate: [{
+  memberCandidates: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }]

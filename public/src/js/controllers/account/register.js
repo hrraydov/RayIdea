@@ -1,11 +1,12 @@
-angular.module('app').controller('AccountRegisterCtrl', ['$scope', '$location', 'UserService', 'TokenService', 'AuthService',   function($scope, $location, UserService, TokenService, AuthService){
+angular.module('app').controller('AccountRegisterCtrl', ['$scope', '$location', 'AccountService', 'TokenService', 'AuthService',   function($scope, $location, AccountService, TokenService, AuthService){
 	$scope.errors = [];
 	$scope.register = function(){
 
-		UserService.register($scope.user)
+		AccountService.register($scope.user)
 		.then(function(data){
 			TokenService.setToken(data.token);
 			AuthService.setUsername(data.username);
+			AuthService.setId(data._id);
 			$location.path('/');
 		},function(data){
 			$scope.errors = data;
